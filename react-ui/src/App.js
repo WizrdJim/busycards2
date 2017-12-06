@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import { connect } from 'react-redux';
+import {Route, withRouter } from 'react-router-dom';
+
+import * as Pages from './pages';
 
 class App extends Component {
   constructor(props) {
@@ -33,8 +38,22 @@ class App extends Component {
   }
 
   render() {
+    const { dispatch, authenticated, errorMessage } = this.props;
     return (
       <div className="App">
+        <Navbar
+          authenticated = { authenticated }
+          errorMessage = { errorMessage }
+          dispatch = { dispatch }
+          history = { this.props.history }
+        />
+        <div>
+          <Route exact path="/" component ={Pages.Home} />
+          <Route path="/signup" component = { Pages.CreateUser } />
+          <Route path="/updatecard" component = {Pages.UpdateCard} />
+          <Route path="/user" component = {Pages.User} />
+          <Route path="/findcards" component = {Pages.FindCard} />
+        </div>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
@@ -55,4 +74,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  const { auth } = state;
+  const { authenticated, errorMessage } = auth;
+  return{
+    authenticated,
+    errorMessage
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App));
