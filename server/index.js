@@ -8,10 +8,23 @@ const path = require('path');
 
 const app = express();
 var cool = require('cool-ascii-faces');
+const corsOptions = {
+  "origin": "*",
+  "Access-Control-Allow-Origin": "*",
+  "methods": "GET, POST, PUT",
+  "preflightContinue": true,
+  "optionsSuccessStatus": 204,
+  "credentials": true
+};
 
 const PORT = process.env.PORT || 5000;
 
 // Priority serve any static files.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.use(morgan('dev'));
+
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 app.use('/API', routes);
 

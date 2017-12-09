@@ -23,6 +23,7 @@ const createUser = (req, res) => {
         title = 'Card'
         link = 'Busy@BusyCard.busyness';
   //Get the username/password does basic error handling
+  console.log(`Req is: ${req.body}`)
   const { username, password } = req.body;
   if (password === "") {
     sendUserError("Please input a valid password", res);

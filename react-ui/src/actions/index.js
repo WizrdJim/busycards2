@@ -39,6 +39,7 @@ export const register = (user, history) => {
       dispatch(authError('Please use matching passwords'));
       return;
     }
+    console.log(`USERNAME in actions: ${username}`)
     axios.post(`${SERVER_URL}/user`, { username, password })
     .then((data)=> {
       localStorage.setItem('id', data.data.id);

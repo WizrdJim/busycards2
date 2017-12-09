@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const mongo = process.env.MONGO || 'mongodb://localhost/fullstackapp';
+const config = require('../config');
+const mongo = process.env.MONGO || config.mongoURL;
+
 
 mongoose.Promise = Promise;
 mongoose.connect(mongo, {useMongoClient: true});
