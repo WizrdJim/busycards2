@@ -54,15 +54,15 @@ class UpdateCard extends Component {
         <Card name = {this.state.name}  title = {this.state.title} link = {this.state.link} />
         <form onSubmit = {this.handleSubmit}>
           <fieldset>
-            <label>name:</label>
+            <label>Name:</label>
             <input value={this.state.name} type = 'text' placeholder ='Name' onChange={this.handleName}/>
           </fieldset>
           <fieldset>
-            <label>title:</label>
+            <label>Title:</label>
             <input value={this.state.title} type = 'text' placeholder ='Title' onChange={this.handleTitle}/>
           </fieldset>
           <fieldset>
-            <label>Confirm title:</label>
+            <label>Link:</label>
             <input value={this.state.link} type = 'text' placeholder ='Link' onChange={this.handleLink}/>
           </fieldset>
           <button type = "submit">UpdateCard</button>

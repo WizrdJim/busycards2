@@ -103,7 +103,6 @@ const updateLocation = (req, res) => {
           sendUserError(err, res);
           return;
         }
-        console.log(user);
       })
     })
 }

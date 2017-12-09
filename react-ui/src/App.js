@@ -47,9 +47,14 @@ class App extends Component {
           dispatch = { dispatch }
           history = { this.props.history }
         />
-        <p className="App-warning">
-          This website is by no means secure and highly experimental I will not vouch for the security of usernames or passwords. USE AT OWN RISK.
-        </p>
+        <div className="App-warning">
+          <h4>
+            This website is by no means secure and highly experimental I will not vouch for the security of usernames or passwords. USE AT OWN RISK.
+          </h4>
+          <p style={{color: 'green'}}>
+            My personal favorite password is test!
+          </p>
+        </div>
         <div>
           <Route exact path="/" component ={Pages.Home} />
           <Route path="/signup" component = { Pages.CreateUser } />

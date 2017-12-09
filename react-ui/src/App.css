@@ -18,8 +18,9 @@
   font-size: large;
 }
 .App-warning{
-  color: 'red';
-  background-color: 'black';
+  color: red;
+  font-size: smaller;
+  background-color: rgb(247, 231, 11);
 }
 
 .App a {
