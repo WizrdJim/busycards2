@@ -13,9 +13,9 @@ export default class Login extends Component {
     return(
       <div>
         <form>
-        <input type= 'text' ref='username' className="form-control" placeholder='Username'/>
-        <input type= 'password' ref='password' className="form-control" placeholder= 'Password'/>
-        <button onClick = {( event ) => this.handleClick(event)} className= "btn btn-primary">
+        <input type='text' ref='username' className="form-control" placeholder='Username'/>
+        <input type='password' ref='password' className="form-control" placeholder='Password'/>
+        <button onClick={( event ) => this.handleClick(event)} className="btn btn-primary">
           Login
         </button>
         { errorMessage && 

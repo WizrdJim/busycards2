@@ -10,24 +10,24 @@ export default class Navbar extends Component {
     const { authenticated, errorMessage, dispatch } = this.props;
     return (
       <nav className='navbar navbar-default'>
-        <div className = 'container-fluid'>
-          <a className= 'navbar-brand'> BCA</a>
-        <div className = 'navbar-form'>
+        <div className='container-fluid'>
+          <a className='navbar-brand'> BCA</a>
+        <div className='navbar-form'>
           {!authenticated && 
           <div>
            <Login
-            errorMessage = { errorMessage }
-            onLoginClick = {(user) => dispatch(login(user, this.props.history))}
+            errorMessage={ errorMessage }
+            onLoginClick={(user) => dispatch(login(user, this.props.history))}
             />
-            <Link to= 'signup'> Create Account </Link>
+            <Link to='signup'> Create Account </Link>
           </div>
           }
           
           {authenticated && 
             <div>
-              <Logout onLogoutClick = { () => dispatch(logout(this.props.history))}
+              <Logout onLogoutClick={ () => dispatch(logout(this.props.history))}
                 />
-                <Link to= 'user'> Home </Link>
+                <Link to='user'> Home </Link>
             </div>
             }
           </div>

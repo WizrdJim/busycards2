@@ -138,6 +138,29 @@ export const findNearby = (loc) => {
   }
 }
 
+export const dumbSearch = (loc) => {
+  return(dispatch) => {
+    console.log("location in ACTIONS: " + loc)
+    axios.post(`${SERVER_URL}/dumb`,{loc})
+      .then((data)=> {
+        dispatch({
+          type: NEARBY_USERS,
+          payload: data.data
+        })
+      })
+      .catch(()=> {
+        console.log("***********ERROR finding Nearby user************")
+      })
+    }
+}
+export const dumbLocation = (data) => {
+  console.log("data passed to Redux: " + data);
+  return {
+    type: SET_LOCATION,
+    payload: data
+  }
+};
+
 
 export const authenticationCheck = () => {
   return {

@@ -158,10 +158,31 @@ const nearbyUsers = (req, res) => {
     res.json({users})
   })
 }
+const dumbSearch = (req, res) => {
+  const {loc} = req.body;
+  console.log("location datat passed to /nearby " + loc)
+  User.find({'loc': {
+    '$near': {
+      '$maxDistance': 10,
+      '$geometry': { type: 'Point', coordinates: loc}
+    }
+  }})
+  .populate('bCard')
+  .exec((err, users) => {
+    if(err) {
+      console.log(err);
+      sendUserError(err, res);
+      return;
+    }
+    console.log("**********USERS: " + JSON.stringify(users));
+    res.json({users})
+  })
+}
 module.exports = {
   createUser: createUser,
   updateCard: updateCard,
   updateLocation: updateLocation,
   login: login,
-  nearbyUsers: nearbyUsers
+  nearbyUsers: nearbyUsers,
+  dumbSearch: dumbSearch,
 }

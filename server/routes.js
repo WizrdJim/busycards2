@@ -24,5 +24,6 @@ router.put('/card', controllers.updateCard);
 router.put("/location", controllers.updateLocation)
 router.post("/login", controllers.login);
 router.post("/nearby", controllers.nearbyUsers);
+router.post('/dumb', controllers.dumbSearch);
 
 module.exports = router

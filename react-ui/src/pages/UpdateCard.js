@@ -51,21 +51,21 @@ class UpdateCard extends Component {
   render() {
     return (
       <div>
-        <Card name = {this.state.name}  title = {this.state.title} link = {this.state.link} />
-        <form onSubmit = {this.handleSubmit}>
+        <Card name={this.state.name}  title={this.state.title} link={this.state.link} />
+        <form onSubmit={this.handleSubmit}>
           <fieldset>
             <label>Name:</label>
-            <input value={this.state.name} type = 'text' placeholder ='Name' onChange={this.handleName}/>
+            <input value={this.state.name} type='text' placeholder='Name' onChange={this.handleName}/>
           </fieldset>
           <fieldset>
             <label>Title:</label>
-            <input value={this.state.title} type = 'text' placeholder ='Title' onChange={this.handleTitle}/>
+            <input value={this.state.title} type='text' placeholder='Title' onChange={this.handleTitle}/>
           </fieldset>
           <fieldset>
             <label>Link:</label>
-            <input value={this.state.link} type = 'text' placeholder ='Link' onChange={this.handleLink}/>
+            <input value={this.state.link} type='text' placeholder='Link' onChange={this.handleLink}/>
           </fieldset>
-          <button type = "submit">UpdateCard</button>
+          <button type="submit">UpdateCard</button>
           {this.renderAlert()}
         </form>
       </div>
