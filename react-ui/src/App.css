@@ -17,6 +17,10 @@
 .App-intro {
   font-size: large;
 }
+.App-warning{
+  color: 'red';
+  background-color: 'black';
+}
 
 .App a {
   color: #f60;

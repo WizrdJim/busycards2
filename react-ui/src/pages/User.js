@@ -46,9 +46,9 @@ class User extends Component {
     return(
       <div>
         <Card 
-          name = {this.props.card.name}
-          title = {this.props.card.title}
-          link = {this.props.card.link}
+          name={this.props.card.name}
+          title={this.props.card.title}
+          link={this.props.card.link}
         />
         <div>Longitude: {this.props.coords.longitude} Latitude: {this.props.coords.latitude} </div>
         <button type='Submit' onClick={()=> this.searchClick()}> SEARCH</button>

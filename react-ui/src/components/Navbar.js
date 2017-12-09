@@ -24,12 +24,14 @@ export default class Navbar extends Component {
           }
           
           {authenticated && 
-            <Logout onLogoutClick = { () => dispatch(logout(this.props.history))}
-              />
+            <div>
+              <Logout onLogoutClick = { () => dispatch(logout(this.props.history))}
+                />
+                <Link to= 'user'> Home </Link>
+            </div>
             }
           </div>
         </div>
-        <Link to= 'user'> Home </Link>
       </nav>
     )
   }

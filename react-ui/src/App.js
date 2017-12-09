@@ -47,6 +47,9 @@ class App extends Component {
           dispatch = { dispatch }
           history = { this.props.history }
         />
+        <p className="App-warning">
+          This website is by no means secure and highly experimental I will not vouch for the security of usernames or passwords. USE AT OWN RISK.
+        </p>
         <div>
           <Route exact path="/" component ={Pages.Home} />
           <Route path="/signup" component = { Pages.CreateUser } />
@@ -54,16 +57,6 @@ class App extends Component {
           <Route path="/user" component = {Pages.User} />
           <Route path="/findcards" component = {Pages.FindCard} />
         </div>
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          {'This is '}
-          <a href="https://github.com/mars/heroku-cra-node">
-            {'create-react-app with a custom Node/Express server'}
-          </a><br/>
-        </p>
         <p className="App-intro">
           {this.state.fetching
             ? 'Fetching message from API'

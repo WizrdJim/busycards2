@@ -30,7 +30,6 @@ const createUser = (req, res) => {
     return;
   }
   //encrypt password cause no one needs to know
-  console.log(username+''+password);
   bcrypt.hash(password, BCRYPT_COST, (err, passwordHash) => {
     if (err) {
       sendUserError(err, res);
@@ -58,7 +57,6 @@ const createUser = (req, res) => {
           return;
         }
         //User saved should return the user_id and the busycard does not currrently!!!!!!
-        console.log(user._id+''+ user.bCard)
         res.json({id: user._id, bCard: user.bCard});
       })
     })
