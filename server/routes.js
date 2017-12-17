@@ -25,5 +25,6 @@ router.put("/location", controllers.updateLocation)
 router.post("/login", controllers.login);
 router.post("/nearby", controllers.nearbyUsers);
 router.post('/dumb', controllers.dumbSearch);
+router.post('/photo', controllers.addPicture)
 
 module.exports = router
