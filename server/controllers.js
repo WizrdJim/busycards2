@@ -1,8 +1,17 @@
 const { User, BusyCard, CardList } = require('./models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cloudinary = require('cloudinary');
+const multer = require('multer');
+let config;
+!process.env.CNAME? config = require('../config') : null;
+const cloud_name = process.env.CNAME || config.cloudName;
+const api_key = process.env.APIKEY || config.apiKey;
+const api_secret = process.env.APISECRET || config.apiSecret;
+
 
 const BCRYPT_COST = 11;
+const upload = multer({ dest : './public/uploads'}).single('photo');
 
 
 
@@ -17,6 +26,7 @@ const sendUserError = (err, res) => {
   }
   res.json(err);
 }
+
 const createUser = (req, res) => {
   // Create a default for the cards
   const name = 'Busy'
@@ -178,11 +188,48 @@ const dumbSearch = (req, res) => {
     res.json({users})
   })
 }
+
+const addPicture = (req, res) => {
+  const { bCardId } = req.body
+	upload(req, res, (err) => {	
+		if(err){
+      sendUserError(err, res);
+      return res.end("Error")};
+		// console.log(req);
+		// res.end("file uploaded")
+
+		cloudinary.config({ 
+	      cloud_name, 
+	      api_key, 
+	      api_secret
+	    })
+  cloudinary.uploader.upload(req.file.path, function(result) { 
+    console.log(result);
+    res.send(result)
+    BusyCard.findOne({id: bCardId}, (error, bCard)=> {
+      if(error) {
+        sendUserError(error, res);
+        return;
+      }
+      bCard.image = result.uri;
+      bCard.save((e, prop) => {
+        if(e){
+          sendUserError(e);
+          return;
+        }
+        console.log(`***Saved BusyCard w/image: *** ${prop}`);
+      })
+    })
+  })
+ })	
+} 
+
 module.exports = {
-  createUser: createUser,
-  updateCard: updateCard,
-  updateLocation: updateLocation,
-  login: login,
-  nearbyUsers: nearbyUsers,
-  dumbSearch: dumbSearch,
+  createUser,
+  updateCard,
+  updateLocation,
+  login,
+  nearbyUsers,
+  dumbSearch,
+  addPicture,
 }

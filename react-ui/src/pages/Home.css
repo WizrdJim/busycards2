@@ -1,0 +1,45 @@
+.Home {
+  text-align: center;
+  height: 80%;
+  background-color: tomato;
+  border: 0 solid tomato;
+  border-radius: 3vh;
+  margin-top: 1vh;
+}
+.Content-container {
+  border: 10px solid rgba(245, 245, 245, 0.473);
+  background-color: powderblue;
+  height: 75%;
+}
+
+.Home-logo {
+  animation: Home-logo-spin infinite 20s linear;
+  height: 75%;
+}
+
+.Home-header {
+  background-color: darkturquoise;
+  height: 150px;
+  padding: 20px;
+  color: tomato;
+  border: 5px dashed aquamarine;
+  border-radius: 3vh;
+}
+
+.Home-intro {
+  font-size: large;
+}
+.Home-warning{
+  color: red;
+  font-size: smaller;
+  background-color: rgb(247, 231, 11);
+}
+
+.Home a {
+  color: #f60;
+}
+
+@keyframes Home-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
