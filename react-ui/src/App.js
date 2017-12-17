@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import nearbyCards from './containers/nearbyCards';
+import NearbyCards from './containers/NearbyCards';
 import { connect } from 'react-redux';
 import {Route, withRouter } from 'react-router-dom';
 import { dumbLocation } from './actions';
@@ -50,7 +50,8 @@ class App extends Component {
           longitude: crd.longitude,
           location: true,
         });
-        this.props.dumbLocation(crd);
+        console.log('Crd in App: ' + crd)
+        this.props.dispatch(dumbLocation(crd));
       };
       
       const error = (err) => {
@@ -80,19 +81,22 @@ class App extends Component {
             My personal favorite password is test!
           </p>
         </div>
-        <div>
-          <Route exact path="/" component={Pages.Home} />
-          <Route path="/signup" component={ Pages.CreateUser } />
-          <Route path="/updatecard" component={Pages.UpdateCard} />
-          <Route path="/user" component={Pages.User} />
-          <Route path="/findcards" component={Pages.FindCard} />
+        <div className="Content-container center-block container-fluid">
+          <div>
+            <Route exact path="/" component={Pages.Home} />
+            <Route path="/signup" component={ Pages.CreateUser } />
+            <Route path="/updatecard" component={Pages.UpdateCard} />
+            <Route path="/user" component={Pages.User} />
+            <Route path="/findcards" component={Pages.FindCard} />
+            {this.state.location ? <NearbyCards latitude={this.state.latitude} longitude={this.state.longitude}/> : null}
+          </div>
+          <p className="App-intro">
+            {this.state.fetching
+              ? 'Fetching message from API'
+              : this.state.message}
+          </p>
         </div>
-        <p className="App-intro">
-          {this.state.fetching
-            ? 'Fetching message from API'
-            : this.state.message}
-          {this.state.location ? <nearbyCards latitude={this.state.latitude} longitude={this.state.longitude}/> : null}
-        </p>
+
       </div>
     );
   }
@@ -108,4 +112,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { dumbLocation })(App));
+export default withRouter(connect(mapStateToProps/*, { dumbLocation }*/)(App));

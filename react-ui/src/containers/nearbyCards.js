@@ -3,26 +3,29 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Card from '../components/Card';
 import { dumbSearch } from '../actions';
+import './NearbyCards.css'
 
 /*
 ****The find card component displays the data of nearby cards
 ****It allows you to tap on cards and connect or save more for later
 
 */
-class nearbyCards extends Component {
+class NearbyCards extends Component {
   constructor(props) {
     super()
     this.state = {
       fetching: true,
       longitude: 0,
       latitude: 0,
-      nearbyList: [],
     }
   }
   componentWillMount() {
+    console.log('NC: ' +  this.props.longitude);
     this.props.dumbSearch([this.props.longitude, this.props.latitude]);
+    
   }
   componentWillReceiveProps(nextProps) {
+    console.log(JSON.stringify(this.props.nearbyList))
     if(this.props !== nextProps) {
       this.setState({
         fetching: false,
@@ -30,8 +33,9 @@ class nearbyCards extends Component {
     }
   }
   render() {
+    console.log('fetching: ' + this.state.fetching)
     return(
-      <div>
+      <div className="Card-container" align="center">
         {this.state.fetching ? null : <div>
           {console.log("nearbyList: *************  " + JSON.stringify(this.props.nearbyList))}
            {
@@ -55,5 +59,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-nearbyCards = withRouter(connect( mapStateToProps, { dumbSearch })(nearbyCards));
-export default nearbyCards;
+NearbyCards = withRouter(connect( mapStateToProps, { dumbSearch })(NearbyCards));
+export default NearbyCards;

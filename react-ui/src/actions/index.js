@@ -143,6 +143,7 @@ export const dumbSearch = (loc) => {
     console.log("location in ACTIONS: " + loc)
     axios.post(`${SERVER_URL}/dumb`,{loc})
       .then((data)=> {
+        console.log(JSON.stringify(data.data))
         dispatch({
           type: NEARBY_USERS,
           payload: data.data
