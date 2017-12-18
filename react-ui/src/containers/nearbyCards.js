@@ -35,7 +35,7 @@ class NearbyCards extends Component {
   render() {
     console.log('fetching: ' + this.state.fetching)
     return(
-      <div className="Card-container" align="center">
+      <div className="Card-container">
         {this.state.fetching ? null : <div>
           {console.log("nearbyList: *************  " + JSON.stringify(this.props.nearbyList))}
            {
