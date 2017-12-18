@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {Route, withRouter } from 'react-router-dom';
 
 import * as Pages from './pages';
+const Home = Pages.Home;
 
 class App extends Component {
   constructor(props) {
@@ -56,8 +57,8 @@ class App extends Component {
           </p>
         </div>
         <div className="Content-container center-block container-fluid">
+        <Home />
           <div>
-            <Route exact path="/" component={Pages.Home} />
             <Route path="/signup" component={ Pages.CreateUser } />
             <Route path="/updatecard" component={Pages.UpdateCard} />
             <Route path="/user" component={Pages.User} />
