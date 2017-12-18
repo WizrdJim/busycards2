@@ -11,7 +11,7 @@ const api_secret = process.env.APISECRET || config.apiSecret;
 
 
 const BCRYPT_COST = 11;
-const upload = multer({ dest : '../public/uploads'}).single('photo');
+const upload = multer({ dest : './public/uploads'}).single('photo');
 
 
 
