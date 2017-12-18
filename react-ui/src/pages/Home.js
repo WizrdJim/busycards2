@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './Home.css';
 import { dumbLocation } from '../actions';
-import NearbyCards from '../containers/NearbyCards';
+import NearbyCards from '../containers/NearbyCards.js';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
