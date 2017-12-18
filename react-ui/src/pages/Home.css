@@ -1,6 +1,6 @@
 .Home {
   text-align: center;
-  height: 80%;
+  min-height: 80%;
   background-color: tomato;
   border: 0 solid tomato;
   border-radius: 3vh;

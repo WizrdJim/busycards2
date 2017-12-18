@@ -1,31 +1,29 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { register } from '../actions';
+import { Modal } from 'react-bootstrap';
+import './AddAccount.css';
 
 class AddAccount extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state ={
       username: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      showModal: false
     }
-    this.handleUsername = this.handleUsername.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleUsername(event) {
+  handleUsername = (event) => {
     this.setState({username: event.target.value})
   }
-  handlePassword(event) {
+  handlePassword = (event) => {
     this.setState({password: event.target.value})
   }
-  handleConfirmPassword(event) {
+  handleConfirmPassword = (event) => {
     this.setState({confirmPassword: event.target.value})
   }
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     const {username, password, confirmPassword} = this.state;
     const user = {
@@ -43,30 +41,30 @@ class AddAccount extends Component {
       <h3> {this.props.errorMessage} </h3>
     ) 
   };
+
   render() {
-    // Use reduxForm to build the sign up form
-    // Check the other components to see how reduxForm is used
-    // There needs fields for Username, Password, and Confirm Password
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <label>Username:</label>
-            <input value={this.state.username} type='text' placeholder='Username' onChange={this.handleUsername}/>
-          </fieldset>
-          <fieldset>
-            <label>Password:</label>
-            <input value={this.state.password} type='password' placeholder='Password' onChange={this.handlePassword}/>
-          </fieldset>
-          <fieldset>
-            <label>Confirm Password:</label>
-            <input value={this.state.confirmPassword} type='password' placeholder='Confirm Password' onChange={this.handleConfirmPassword}/>
-          </fieldset>
-          <button type="submit">Sign Up</button>
-          {this.renderAlert()}
-        </form>
-      <div>Sign Up</div>
-      </div>
+      <Modal show={this.props.modal} onHide={this.props.hideModal}>
+        <div className="Modal-container">
+          <h2>One of Us</h2>
+          <form onSubmit={this.handleSubmit}>
+            <fieldset>
+              <label>Username:</label>
+              <input value={this.state.username} type='text' placeholder='Username' onChange={this.handleUsername}/>
+            </fieldset>
+            <fieldset>
+              <label>Password:</label>
+              <input value={this.state.password} type='password' placeholder='Password' onChange={this.handlePassword}/>
+            </fieldset>
+            <fieldset>
+              <label>Confirm Password:</label>
+              <input value={this.state.confirmPassword} type='password' placeholder='Confirm Password' onChange={this.handleConfirmPassword}/>
+            </fieldset>
+            <button type="submit">Sign Up</button>
+            {this.renderAlert()}
+          </form>
+        </div>
+      </ Modal>
     );
   }
 }
@@ -79,6 +77,6 @@ const mapStateToProps = (state) => {
 };
 
 // Make sure to correctly fill in this `connect` call
-AddAccount = withRouter(connect( mapStateToProps,{ register })(AddAccount));
+AddAccount = connect( mapStateToProps,{ register })(AddAccount);
 export default AddAccount;
 

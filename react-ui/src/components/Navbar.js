@@ -3,6 +3,7 @@ import Login from './Login';
 import Logout from './Logout';
 import { Link } from 'react-router-dom';
 import { login, logout } from '../actions';
+import { Button } from 'react-bootstrap';
 
 
 export default class Navbar extends Component {
@@ -19,7 +20,7 @@ export default class Navbar extends Component {
             errorMessage={ errorMessage }
             onLoginClick={(user) => dispatch(login(user, this.props.history))}
             />
-            <Link to='signup'> Create Account </Link>
+            <Button onClick={this.props.onClick}> Create Account </Button>
           </div>
           }
           

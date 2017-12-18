@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { connect } from 'react-redux';
 import {Route, withRouter } from 'react-router-dom';
+import AddAccount from './containers/AddAccount';
 
 import * as Pages from './pages';
 const Home = Pages.Home;
@@ -13,7 +14,22 @@ class App extends Component {
     this.state = {
       message: null,
       fetching: true,
+      modal: false,
     };
+  }
+
+  displayModal = () => {
+    this.setState({
+      modal: true,
+    })
+    console.log("Bing")
+  }
+
+  hideModal = () => {
+    this.setState({
+      modal: false,
+    })
+    console.log("Bong")
   }
 
   componentDidMount() {
@@ -47,6 +63,7 @@ class App extends Component {
           errorMessage={ errorMessage }
           dispatch={ dispatch }
           history={ this.props.history }
+          onClick={ this.displayModal }
         />
         <div className="App-warning">
           <h4>
@@ -57,6 +74,7 @@ class App extends Component {
           </p>
         </div>
         <div className="Content-container center-block container-fluid">
+        <AddAccount modal={this.state.modal} hideModal={this.hideModal}/>
         <Home />
           <div>
             <Route path="/signup" component={ Pages.CreateUser } />

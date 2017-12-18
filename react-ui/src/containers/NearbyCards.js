@@ -23,7 +23,8 @@ class NearbyCards extends Component {
   }
   componentWillMount() {
     const { longitude, latitude } = this.props;
-    console.log('NC: ' +  this.props.longitude);
+    console.log('NClon: ' +  this.props.longitude);
+    console.log('NClat: ' + this.props.latitude);
     // this.props.dumbSearch([this.props.longitude, this.props.latitude]);
     const loc = [longitude, latitude];
     axios.post(`${SERVER_URL}/dumb`,{loc})
@@ -33,9 +34,10 @@ class NearbyCards extends Component {
         nearbyList: data.data.users,
         fetching: false,
       })
+      return
     })
-    .catch(()=> {
-      console.log("***********ERROR finding Nearby user************")
+    .catch((error)=> {
+      console.log("***********ERROR finding Nearby user************" + error)
     })  
   }
 

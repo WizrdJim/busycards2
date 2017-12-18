@@ -170,7 +170,7 @@ const nearbyUsers = (req, res) => {
 }
 const dumbSearch = (req, res) => {
   const {loc} = req.body;
-  console.log("location datat passed to /nearby " + loc)
+  console.log("location datat passed to /dumb " + loc)
   User.find({'loc': {
     '$near': {
       '$maxDistance': 10,
