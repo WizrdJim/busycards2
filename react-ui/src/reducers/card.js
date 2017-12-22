@@ -8,9 +8,9 @@ const CardReducer = (card = {
 }, action) => {
   switch (action.type) {
     case CARD_UPDATE:
-      return card = Object.assign(card, action.payload);
+      return card = Object.assign({}, card, action.payload);
     case START_FRESH:
-      return card = Object.assign(card, {
+      return card = Object.assign({}, card, {
         name: 'Busy',
         title: 'Card',
         link: 'Busy@BusyCard.busyness'

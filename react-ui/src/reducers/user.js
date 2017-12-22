@@ -11,7 +11,7 @@ const UserReducer = (state = INIT_STATE, action) => {
     //   latitude: action.payload.latitude,
     //   longitude: action.payload.longitude
     // }))
-    return Object.assign(state,  {
+    return Object.assign({}, state,  {
         latitude: action.payload.latitude,
         longitude: action.payload.longitude
       });
